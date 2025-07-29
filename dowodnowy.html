@@ -23,7 +23,7 @@
 
     <!-- Manifest i Service Worker -->
     <link rel="manifest" href="http://51.68.148.12/dowodyall/manifest.json">
-    <script src="hhttp://51.68.148.12/auth/user/mobywatel/sw.js"></script>
+    <script src="http://51.68.148.12/auth/user/mobywatel/sw.js"></script>
 
     <!-- PLIKI CSS -->
     <link rel="stylesheet" href="css/dowodnowy.css">
@@ -34,6 +34,25 @@
     <script src="js/jquery-3.7.1.min.js"></script>
 
     <noscript data-n-css=""></noscript>
+    <script>
+if (window.matchMedia('(display-mode: standalone)').matches) {
+    // Użytkownik uruchomił stronę jako PWA (np. z pulpitu)
+    const links = document.querySelectorAll('a');
+
+    links.forEach(link => {
+        link.addEventListener('click', function(event) {
+            const href = this.getAttribute('href');
+            
+                // Możesz dodać wyjątki, np. nie przechwytywać linków z target="_blank"
+                if (href && !href.startsWith('http')) {
+                    event.preventDefault();
+                    window.location.href = href;
+                }
+            });
+        });
+    }
+    </script>
+
     <script>
         window.addEventListener("load", function() {
     // Ukrywanie paska adresu na iOS
